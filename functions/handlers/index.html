@@ -1,0 +1,2140 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>内置插件（可删除） - SAGIRI BOT Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 0 1 .25-.25h5.025a.25.25 0 0 1 .177.073l6.25 6.25a.25.25 0 0 1 0 .354l-5.025 5.025a.25.25 0 0 1-.354 0l-6.25-6.25a.25.25 0 0 1-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775zM6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v7.736a.75.75 0 1 0 1.5 0V1.75A1.75 1.75 0 0 0 11.25 0h-8.5A1.75 1.75 0 0 0 1 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 0 0 0-1.5H2.75a.25.25 0 0 1-.25-.25V1.75zM4.75 4a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75zm11.774 3.537a.75.75 0 0 0-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 0 0-1.062 1.058l1.943 1.95a.75.75 0 0 0 1.055.008l4.557-4.45z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.489 4.489 0 0 1-.563-1.191 3.833 3.833 0 0 1-.05-2.063 4.636 4.636 0 0 1-2.025-.293.75.75 0 1 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.748.748 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.404 2.404 0 0 1-.507-.441 3.063 3.063 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.753.753 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768a85.08 85.08 0 0 0-.317-.265c-.814-.68-1.75-1.462-2.692-2.619a3.74 3.74 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.92 6.085c.081-.16.19-.299.34-.398.145-.097.371-.187.74-.187.28 0 .553.087.738.225A.613.613 0 0 1 9 6.25c0 .177-.04.264-.077.318a.956.956 0 0 1-.277.245c-.076.051-.158.1-.258.161l-.007.004a7.728 7.728 0 0 0-.313.195 2.416 2.416 0 0 0-.692.661.75.75 0 0 0 1.248.832.956.956 0 0 1 .276-.245 6.3 6.3 0 0 1 .26-.16l.006-.004c.093-.057.204-.123.313-.195.222-.149.487-.355.692-.662.214-.32.329-.702.329-1.15 0-.76-.36-1.348-.863-1.725A2.76 2.76 0 0 0 8 4c-.631 0-1.155.16-1.572.438-.413.276-.68.638-.849.977a.75.75 0 1 0 1.342.67z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 1 1 9.192-9.192 6.5 6.5 0 0 1-9.192 9.192zM2.344 2.343a8 8 0 1 0 11.313 11.314A8 8 0 0 0 2.343 2.343zM6.03 4.97a.75.75 0 0 0-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 1 0 1.06 1.06L8 9.06l1.97 1.97a.75.75 0 1 0 1.06-1.06L9.06 8l1.97-1.97a.75.75 0 1 0-1.06-1.06L8 6.94 6.03 4.97z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 0 0-.01.004L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.02.02 0 0 0-.004-.009.02.02 0 0 0-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.492 3.492 0 0 1 2.441 0l.999-1a.75.75 0 1 1 1.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.013 5.013 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06zM6.173 5h3.654A.173.173 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75h-5.5z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2.5a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H1.75zm4 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zm0 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zM2.5 7.75a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6z"/></svg>');}</style>
+
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="SAGIRI BOT Docs" class="md-header__button md-logo" aria-label="SAGIRI BOT Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SAGIRI BOT Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              内置插件（可删除）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SAGIRI-kawaii/sagiri-bot" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SAGIRI-kawaii/sagiri-bot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SAGIRI BOT Docs" class="md-nav__button md-logo" aria-label="SAGIRI BOT Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SAGIRI BOT Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SAGIRI-kawaii/sagiri-bot" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SAGIRI-kawaii/sagiri-bot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        前言
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          项目部署
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="项目部署" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          项目部署
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/linux/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        配置文件
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          功能
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="功能" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          功能
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../required_module/" class="md-nav__link">
+        必要插件（建议不删除）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          内置插件（可删除）
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        内置插件（可删除）
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    查询成分
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    原神抽卡
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    原神资源点查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mockingbird" class="md-nav__link">
+    MockingBird
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    哔咔漫画
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    超分辨率
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wordle" class="md-nav__link">
+    Wordle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    查老师
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    缩写预测
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    普通话转抽象话
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aminer" class="md-nav__link">
+    学术搜索（aminer）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    头像趣图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    搜番
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    以图搜番
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bilibili-7" class="md-nav__link">
+    BiliBili 7日内新番
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    黑白生草图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    种子搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    智能回复
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    色卡生成插件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    CP文生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    每日新闻早报
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    骰子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emoji" class="md-nav__link">
+    emoji融合
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    一个生成转发消息的插件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    闪照转换插件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    原神角色卡
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    原神每日可获取素材查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    Github项目搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    群小组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    群词云生成器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    热梗解释
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    我有一个朋友
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    图片存储
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    以图搜图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    图库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    笑话生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    关键词回复
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    钉宫语音
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode" class="md-nav__link">
+    Leetcode信息
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lolicon" class="md-nav__link">
+    Lolicon图片
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    营销号生成器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    表情包生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    消息转图片
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    网络编译器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdf" class="md-nav__link">
+    PDF搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    舔狗日记
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    幻影坦克
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    毒鸡汤
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    文字转二维码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    随机人设
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    随机老婆
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    复读机
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    语音合成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steam" class="md-nav__link">
+    steam游戏搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logo" class="md-nav__link">
+    风格logo图片生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    塔罗牌
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trending" class="md-nav__link">
+    trending
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    科学计算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    发病
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../function_extension/" class="md-nav__link">
+        功能拓展
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          二次开发
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="二次开发" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          二次开发
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/start/" class="md-nav__link">
+        开始开发
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/control/" class="md-nav__link">
+        内置控制器
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manage/" class="md-nav__link">
+        管理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../update/" class="md-nav__link">
+        更新日志
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    查询成分
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    原神抽卡
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    原神资源点查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mockingbird" class="md-nav__link">
+    MockingBird
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    哔咔漫画
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    超分辨率
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wordle" class="md-nav__link">
+    Wordle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    查老师
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    缩写预测
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    普通话转抽象话
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aminer" class="md-nav__link">
+    学术搜索（aminer）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    头像趣图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    搜番
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    以图搜番
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bilibili-7" class="md-nav__link">
+    BiliBili 7日内新番
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    黑白生草图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    种子搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    智能回复
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    色卡生成插件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    CP文生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    每日新闻早报
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    骰子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emoji" class="md-nav__link">
+    emoji融合
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    一个生成转发消息的插件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    闪照转换插件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    原神角色卡
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    原神每日可获取素材查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    Github项目搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    群小组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    群词云生成器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    热梗解释
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    我有一个朋友
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    图片存储
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    以图搜图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    图库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    笑话生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    关键词回复
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    钉宫语音
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode" class="md-nav__link">
+    Leetcode信息
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lolicon" class="md-nav__link">
+    Lolicon图片
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    营销号生成器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    表情包生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    消息转图片
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    网络编译器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdf" class="md-nav__link">
+    PDF搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    舔狗日记
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    幻影坦克
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    毒鸡汤
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    文字转二维码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    随机人设
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    随机老婆
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    复读机
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    语音合成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steam" class="md-nav__link">
+    steam游戏搜索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logo" class="md-nav__link">
+    风格logo图片生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    塔罗牌
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trending" class="md-nav__link">
+    trending
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    科学计算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    发病
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/SAGIRI-kawaii/sagiri-bot/edit/master/docs/functions/handlers.md" title="编辑此页" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="_1">内置模块</h1>
+<p>本篇为内置模块，若您不需要使用某一模块，可以删除模块或通过 <code>saya_manager</code> 进行管理</p>
+<p>其中命令格式使用了正则语法</p>
+<ul>
+<li>(a|b)c 代表 a或b+c，即 ac，bc 都可触发</li>
+<li>ab?c 代表b可选，即 abc，ac 都可触发</li>
+</ul>
+<blockquote>
+<h2 id="_2">查询成分</h2>
+</blockquote>
+<p>一个查询B站成分的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.dd_check</code></p>
+<p>使用方法：在群中发送 <code>/查成分 {B站UID/用户名}</code> 即可</p>
+<blockquote>
+<h2 id="_3">原神抽卡</h2>
+</blockquote>
+<p>一个原神抽卡插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.genshin_gacha</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>原神(10|90|180)连?抽?</code> 即可进行抽卡</li>
+<li>在群中发送 <code>原神(卡池|up|UP)(信息)?</code> 即可查看目前卡池信息</li>
+<li>在群中发送 <code>原神(卡池切换|切换卡池) {pool_name}</code> 即可切换当前卡池（管理）</li>
+<li>在群中发送 <code>更新原神卡池</code> 即可更新卡池信息（管理）</li>
+</ul>
+<p>可修改的参数：</p>
+<ul>
+<li><code>sagiri_bot.handler.handlers.genshin_gacha.__init__.py</code><ul>
+<li><code>Gacha10Limit (line 39)</code> 为每天可以进行的10连次数</li>
+<li><code>Gacha90Limit (line 40)</code> 为每天可以进行的90连次数</li>
+<li><code>Gacha180Limit (line 41)</code> 为每天可以进行的180连次数</li>
+</ul>
+</li>
+<li><code>sagiri_bot.handler.handlers.genshin_gacha.pool_data.py</code><ul>
+<li><code>AUTO_UPDATE (line 16)</code> 是否自动更新卡池数据</li>
+</ul>
+</li>
+</ul>
+<p>注意：第一次更新可能会阻塞一段时间直至更新完毕</p>
+<p>来源: <a href="https://github.com/H-K-Y/Genshin_Impact_bot">Genshin_Impact_bot</a></p>
+<blockquote>
+<h2 id="_4">原神资源点查询</h2>
+</blockquote>
+<p>一个获取原神资源的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.genshin_resource_points</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>原神{resource_name} 在哪里? | 哪里?有 {resource_name}</code> 即可查看资源地图</li>
+<li>在群中发送 <code>原神资源列表</code> 即可查看资源列表</li>
+</ul>
+<p>来源: <a href="https://github.com/H-K-Y/Genshin_Impact_bot">Genshin_Impact_bot</a></p>
+<blockquote>
+<h2 id="mockingbird">MockingBird</h2>
+</blockquote>
+<p>一个可以生成语音的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.mockingbird</code></p>
+<p>使用方法：在群中发送 <code>纱雾说 {content}</code> 即可</p>
+<p>注意：此插件因为模型过大而不在仓库中，需要多走几步安装，安装前需要安装如下依赖：
+<div class="highlight"><pre><span></span><code>torch
+scipy
+librosa
+numba
+pypinyin
+webrtcvad
+Unidecode
+inflect
+</code></pre></div></p>
+<p>假设你用了 <code>poetry</code>，也可以使用 <code>poetry install -E "mockingbird"</code></p>
+<p>然后前往<a href="https://github.com/TimeRainStarSky/Sagiri_MockingBird">这里</a>下载所需要的模型。<br />
+但是注意，<strong>请不要使用 <code>git clone</code> 方法下载</strong>，因为该仓库采用了 <code>git-lfs</code> 的存储方式，
+导致直接 <code>git clone</code> 的情况下只会下载到一个只有 1kb 大小的占用包<br />
+请直接进入详细界面，如<a href="https://github.com/TimeRainStarSky/Sagiri_MockingBird/blob/main/mockingbird.txz">https://github.com/TimeRainStarSky/Sagiri_MockingBird/blob/main/mockingbird.txz</a>，
+然后点击 <code>Download</code> 按钮进行下载。</p>
+<blockquote>
+<h2 id="_5">哔咔漫画</h2>
+</blockquote>
+<p>一个接入哔咔漫画的插件，支持搜索关键词，随机漫画，下载漫画，排行榜获取</p>
+<p>注意：使用该组件的情况下，需要在配置中配置 pica 账号密码和代理</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.pica</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>pica search {keyword}</code> 来搜索特定关键词</li>
+<li>在群中发送 <code>pica random</code> 来获取随机漫画</li>
+<li>在群中发送 <code>pica rank -H24/-D7/-D30</code> 来获取24小时/一周/一月内排行榜</li>
+<li>在群中发送 <code>pica download (-message|-forward) {comic_id}</code> 来获取图片消息/转发消息/压缩文件形式的漫画</li>
+</ul>
+<blockquote>
+<h2 id="_6">超分辨率</h2>
+</blockquote>
+<p>一个图片超分插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.super_resolution</code></p>
+<p>使用方法：在群中发送 <code>/超分 图片</code> 即可</p>
+<p>注意：<br />
+若需要使用本插件，请运行 <code>pip install realesrgan basicsr torch</code>，或者直接使用<code>poetry install -E "super_resolution"</code>，若想使用 <code>gpu</code> 进行运算则还需要安装 <code>CUDA</code> 和 <code>CUDNN</code>，请上网自行寻找教程，各个库版本都应对应才可以使用 <code>gpu</code>，若不安装则插件默认不启用</p>
+<blockquote>
+<h2 id="wordle">Wordle</h2>
+</blockquote>
+<p>Wordle文字游戏</p>
+<p>答案为指定长度单词，发送对应长度单词即可。灰色块代表此单词中没有此字母，黄色块代表此单词中有此字母，但该字母所处位置不对，绿色块代表此单词中有此字母且位置正确，猜出单词或用光次数则游戏结束。</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.wordle</code></p>
+<p>使用方法：</p>
+<ul>
+<li>
+<p>发起游戏：/wordle -l=5 -d=SAT，其中-l/-length为单词长度，-d/-dic为指定词典，默认为5和CET4</p>
+</li>
+<li>
+<p>中途放弃：/wordle -g 或 /wordle -giveup</p>
+</li>
+<li>
+<p>查看提示：/wordle -hint</p>
+</li>
+<li>
+<p>查看数据统计：/wordle -s 或 /wordle -statistic</p>
+</li>
+</ul>
+<p>扩展：可自行添加词库，将词库json放入 <code>sagiri_bot.handler.handlers.wordle.words</code> 文件夹即可，json格式如下
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="err">...</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;word&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;CHS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;单词&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ENG&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;word&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="err">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<blockquote>
+<h2 id="_7">查老师</h2>
+</blockquote>
+<p>一个查老师的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.xslist</code></p>
+<p>使用方法：在群中发送 <code>/查老师 {作品名/老师名/图片}</code> 即可</p>
+<blockquote>
+<h2 id="_8">缩写预测</h2>
+</blockquote>
+<p>一个获取英文缩写意思的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.abbreviated_prediction</code></p>
+<p>使用方法：在群中发送 <code>缩 内容</code> 即可</p>
+<blockquote>
+<h2 id="_9">普通话转抽象话</h2>
+</blockquote>
+<p>一个普通话转抽象话的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.abstract_message_transformer</code></p>
+<p>使用方法：在群中发送 <code>/抽象 文字</code> 即可</p>
+<blockquote>
+<h2 id="aminer">学术搜索（aminer）</h2>
+</blockquote>
+<p>一个可以搜学者、论文、专利的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.aminer</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>/aminer {keyword}</code> 即可搜索学者</li>
+<li>在群中发送 <code>/aminer -paper {keyword}</code> 即可搜索论文</li>
+<li>在群中发送 <code>/aminer -patent {keyword}</code> 即可搜索专利</li>
+</ul>
+<blockquote>
+<h2 id="_10">头像趣图</h2>
+</blockquote>
+<p>一个可以生成头像相关趣味图的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.avatar_fun_pic</code></p>
+<p>使用方法：在群中发送 <code>(摸|亲|贴|撕|丢|爬|精神支柱|吞) (@目标|目标qq|目标图片)</code> 即可</p>
+<p>来源：部分来自于 <a href="https://github.com/MeetWq/mybot/">MeetWq</a> &amp; <a href="https://github.com/SuperWaterGod">SuperWaterGod</a></p>
+<blockquote>
+<h2 id="_11">搜番</h2>
+</blockquote>
+<p>一个可以搜索番剧信息的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.bangumi_info_searcher</code></p>
+<p>使用方法：在群中发送 <code>番剧 {番剧名}</code> 即可</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="_12">以图搜番</h2>
+</blockquote>
+<p>一个可以根据图片搜索番剧的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.bangumi_searcher</code></p>
+<p>使用方法：在群中发送 <code>搜番</code> 后，等待回应在30s内发送图片即可（多张图片只会搜索第一张）</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="bilibili-7">BiliBili 7日内新番</h2>
+</blockquote>
+<p>一个可以获取BiliBili7日内新番时间表的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.bilibili_bangumi_scheduler</code></p>
+<p>使用方法：在群内发送 <code>[1-7]日内新番</code> 即可</p>
+<blockquote>
+<h2 id="_13">黑白生草图</h2>
+</blockquote>
+<p>一个生成黑白草图的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.black_white_grass</code></p>
+<p>使用方法：在群中发送 <code>黑白草?图 内容 图片</code> 即可</p>
+<blockquote>
+<h2 id="_14">种子搜索</h2>
+</blockquote>
+<p>一个可以搜索种子的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.bt</code></p>
+<p>使用方法：在群中发送 <code>/bt + {keyword}</code> 即可</p>
+<blockquote>
+<h2 id="_15">智能回复</h2>
+</blockquote>
+<p>一个可以实现智能回复的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.chat_reply</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>@bot + 想说的话</code> 即可</li>
+<li>使用 <code>setting -set (speakMode|speak_mode)=value</code> 即可改变说话方式</li>
+</ul>
+<p>其中 <code>value</code> 如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>不进行回复</td>
+<td></td>
+</tr>
+<tr>
+<td>rainbow</td>
+<td>彩虹屁模式</td>
+<td></td>
+</tr>
+<tr>
+<td>chat</td>
+<td>腾讯云智能回复</td>
+<td>自行注册腾讯云获取 <code>secret_id</code> &amp; <code>secret_key</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="_16">色卡生成插件</h2>
+</blockquote>
+<p>一个可以生成色卡的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.color_card</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>/色卡 {图片/@成员/qq号/回复有图片的消息}</code> 即可</li>
+<li>可选参数：<ul>
+<li>-s/-size：色卡颜色个数，在群中发送 <code>/色卡 -s={size} {图片/@成员/qq号/回复有图片的消息}</code> 即可，默认值为5 </li>
+<li>-m/-mode：色卡形式，在群中发送 <code>/色卡 -s={size} {图片/@成员/qq号/回复有图片的消息}</code> 即可，默认值为center，可选值及说明如下：<ul>
+<li>pure：纯颜色</li>
+<li>below：在下方添加方形色块</li>
+<li>center：在图片中央添加圆形色块（自适应，若图片长&gt;宽则为center_horizon，反之则为center_vertical）</li>
+<li>center_horizon：在图片中央水平添加圆形色块</li>
+<li>center_vertical：在图片中央垂直添加圆形色块</li>
+</ul>
+</li>
+<li>-t/-text：是否在下方附加色块RGB即十六进制值文本，在群中发送 <code>/色卡 -t {图片/@成员/qq号/回复有图片的消息}</code> 即可</li>
+</ul>
+</li>
+<li>上述参数可同步使用，并按照 -s、-m、-t的顺序添加，如 <code>/色卡 -s=10 -m=pure -t {图片/@成员/qq号/回复有图片的消息}</code></li>
+</ul>
+<blockquote>
+<h2 id="cp">CP文生成</h2>
+</blockquote>
+<p>一个生成CP文的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.cp_generator</code></p>
+<p>使用方法：在群中发送 <code>/cp {攻名字} {受名字}</code></p>
+<blockquote>
+<h2 id="_17">每日新闻早报</h2>
+</blockquote>
+<p>一个定时发送每日新闻早报插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.daily_newspaper</code></p>
+<p>使用方法：自动发送（需打开群内 <code>daily_newspaper</code> 开关）</p>
+<blockquote>
+<h2 id="_18">骰子</h2>
+</blockquote>
+<p>一个简单的投骰子插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.dice</code></p>
+<p>使用方法：在群中发送 <code>{times}d{range}</code> 即可</p>
+<blockquote>
+<h2 id="emoji">emoji融合</h2>
+</blockquote>
+<p>一个生成emoji融合图的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.emoji_mix</code></p>
+<p>使用方法：在群中发送 '{emoji1}+{emoji2}' 即可</p>
+<p>来源：<a href="https://github.com/MeetWq/nonebot-plugin-emojimix">nonebot-plugin-emojimix</a></p>
+<p>注意：仅适用于emoji表情，不适用于qq表情</p>
+<blockquote>
+<h2 id="_19">一个生成转发消息的插件</h2>
+</blockquote>
+<p>转发消息生成器</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.fake_forward</code></p>
+<p>使用方法：在群中发送 <code>/fake {content} @target</code> 即可</p>
+<blockquote>
+<h2 id="_20">闪照转换插件</h2>
+</blockquote>
+<p>闪照转换插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.flash_image_catcher</code></p>
+<p>使用方法：自动触发，可通过 <code>setting -set antiFlashImage(anti_flash_image)=False</code> 关闭</p>
+<blockquote>
+<h2 id="_21">原神角色卡</h2>
+</blockquote>
+<p>一个原神角色卡查询插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.genshin_chara_card</code></p>
+<p>使用方法：在群中发送 <code>/原神角色卡 UID 角色名</code> 即可</p>
+<blockquote>
+<h2 id="_22">原神每日可获取素材查询</h2>
+</blockquote>
+<p>一个可以查询原神每日可获取素材的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.genshin_material_remind</code></p>
+<p>使用方法：在群中发送 <code>原神今日素材</code> 即可</p>
+<blockquote>
+<h2 id="github">Github项目搜索</h2>
+</blockquote>
+<p>可以搜索Github项目信息的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.github_info</code></p>
+<p>使用方法：在群中发送 <code>github (-i)? {项目名}</code> 即可，其中 <code>-i</code> 为可选项，代表图片化输出</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="_23">群小组</h2>
+</blockquote>
+<p>一个可以将群内组员分为小组进行呼叫的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.group_team</code></p>
+<p>使用方法：
+- 发送 <code>群小组/group_team 添加分组/创建分组/create &lt;小组名&gt; &lt;@要添加的组员&gt;</code> 即可创建分组
+- 发送 <code>群小组/group_team 删除分组/解散分组/delete &lt;小组名&gt;</code> 即可删除分组
+- 发送 <code>群小组/group_team 添加成员/add &lt;小组名&gt; &lt;@要添加的组员&gt;</code> 即可在分组中添加成员
+- 发送 <code>群小组/group_team 移除成员/删除成员/remove &lt;小组名&gt; &lt;@要移除的组员&gt;</code> 即可在分组中移除成员
+- 发送 <code>群小组/group_team 通知/呼叫/notice/call &lt;小组名&gt; &lt;要发送的信息&gt;</code> 即可对小组内成员发送消息
+- 发送 <code>群小组/group_team 列出/显示/列表/show/list</code> 即可查看所在群组中所有小组
+- 发送 <code>群小组/group_team 列出/显示/列表/show/list &lt;小组名&gt;</code> 即可查看小组内组员</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="_24">群词云生成器</h2>
+</blockquote>
+<p>群词云生成器</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.group_wordcloud_generator</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>我的日/月/年内总结 {topK} {背景图}</code> 即可查看个人日/月/年词云</li>
+<li>在群中发送 <code>本群日/月/年内总结 {topK} {背景图}</code> 即可查看群组日/月/年词云（需要权限等级2）</li>
+<li>其中 <code>topK</code> 为关键词数量，<code>背景图</code> 为词云的蒙版</li>
+</ul>
+<blockquote>
+<h2 id="_25">热梗解释</h2>
+</blockquote>
+<p>一个可以查询热梗的插件</p>
+<blockquote>
+<p>2022.09.21 更新：因为所依赖的API更新，所以现在暂时处于一种不可用状态</p>
+</blockquote>
+<p>模块位置：<code>sagiri_bot.handler.handlers.hot_words_explainer</code></p>
+<p>使用方法：在群中发送 <code>{keyword}是什么梗</code> 即可</p>
+<blockquote>
+<h2 id="_26">我有一个朋友</h2>
+</blockquote>
+<p>一个生成假聊天记录截图插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.i_have_a_friend</code></p>
+<p>使用方法：在群中发送 <code>我(有一?个)?朋友(想问问|说|让我问问|想问|让我问|想知道|让我帮他问问|让我帮他问|让我帮忙问|让我帮忙问问|问) (-dark)? (@目标)? 内容</code> 即可</p>
+<blockquote>
+<h2 id="_27">图片存储</h2>
+</blockquote>
+<p>一个能够在图库中添加图片的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.image_adder</code></p>
+<p>使用方法：在群中发送 <code>添加(图库名)图片([图片])+</code> 即可</p>
+<blockquote>
+<h2 id="_28">以图搜图</h2>
+</blockquote>
+<p>一个可以以图搜图的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.image_searcher</code></p>
+<p>使用方法：在群中发送 <code>搜图</code> 后，等待回应在30s内发送图片即可（多张图片只会搜索第一张）</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="_29">图库</h2>
+</blockquote>
+<p>一个可以自定义图库发送图片的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.image_sender</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送设置好的关键词即可</li>
+<li>在群中发送 <code>(添加|删除|查看)图库关键词#{gallery_name}#{keyword}</code> 即可添加/删除/查看图库关键词</li>
+<li>在群中发送 <code>查看已加载图库</code> 即可查看已加载图库</li>
+</ul>
+<p>图库配置方法：</p>
+<ul>
+<li>
+<p>对于本地图片文件夹，请使用绝对路径，并在路径最后加上 <code>/</code>，示例：<code>M:\pixiv\</code></p>
+</li>
+<li>
+<p>对于网络地址，直接返回图片的网址直接填入即可，示例：<code>https://api.mtyqx.cn/api/random.php</code></p>
+</li>
+<li>
+<p>对于网络地址，返回 <code>json</code> 的网址，请使用如下格式：<code>json:{patha}.{pathb}${url}</code></p>
+</li>
+<li>json示例：
+对如下返回格式，可使用 <code>json:data.data.|1$https://ovooa.com/API/cosplay/api.php</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;获取成功&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;【COS正片】王者荣耀 小鹿女瑶cos CN人形团子&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;http://t2cy.com/d/file/acg/cos/cosplay/2019-05-24/01da1a430bb31368ae402291309f6673.jpg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+其中对于 <code>json数组索引</code>，请使用 <code>|{index}</code> 的格式，路径和网址之间使用 <code>$</code> 进行间隔</li>
+</ul>
+<blockquote>
+<h2 id="_30">笑话生成</h2>
+</blockquote>
+<p>一个生成笑话的插件，内置了苏联&amp;美国&amp;法国笑话</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.joke</code></p>
+<p>使用方法：在群中发送 <code>来点{keyword|法国|苏联|美国}笑话</code></p>
+<blockquote>
+<h2 id="_31">关键词回复</h2>
+</blockquote>
+<p>一个关键字回复插件，在群中发送已添加关键词可自动回复</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.keyword_respondent</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送已添加关键词可自动回复</li>
+<li>在群中发送 <code>添加[正则|模糊][群组]回复关键词#{keyword}#{reply}</code> 可添加关键词</li>
+<li>在群中发送 <code>删除[正则|模糊][群组]回复关键词#{keyword}</code> 可删除关键词</li>
+</ul>
+<blockquote>
+<h2 id="_32">钉宫语音</h2>
+</blockquote>
+<p>一个钉宫语音包插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.kugimiya_voice</code></p>
+<p>使用方法：发送 <code>来点钉宫</code> 即可</p>
+<blockquote>
+<h2 id="leetcode">Leetcode信息</h2>
+</blockquote>
+<p>一个可以获取Leetcode信息的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.leetcode_info</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>leetcode userslug</code> 可查询个人资料（userslug为个人主页地址最后的唯一识别代码）</li>
+<li>在群中发送 <code>leetcode每日一题</code> 可查询每日一题</li>
+</ul>
+<blockquote>
+<h2 id="lolicon">Lolicon图片</h2>
+</blockquote>
+<p>一个接入lolicon api的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.lolicon_keyword_searcher</code></p>
+<p>使用方法：在群中发送 <code>来点{keyword}[色涩瑟]图</code> 即可</p>
+<blockquote>
+<h2 id="_33">营销号生成器</h2>
+</blockquote>
+<p>一个营销号内容生成器插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.marketing_content_generator</code></p>
+<p>使用方法：在群中发送 <code>营销号#事件主体#事件内容#事件另一种说法</code> 即可</p>
+<blockquote>
+<h2 id="_34">表情包生成</h2>
+</blockquote>
+<p>一个生成趣味表情包的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.memes</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>(nokia|鲁迅说|狂粉|狂爱|喜报|记仇|低语|别说了|一巴掌|滚屏) {content}</code> 即可</li>
+<li>在群中发送 <code>(王境泽|谁反对|曾小贤|连连看|食屎啦你|五年怎么过的) {content1} {content2} {content3} {content4}</code> 即可</li>
+<li>在群中发送 <code>(馋身子|压力大爷|你好骚啊) {content1} {content2} {content3}</code> 即可 </li>
+<li>在群中发送 <code>切格瓦拉 {content} * 6</code> 即可 </li>
+<li>在群中发送 <code>为所欲为 {content} * 9</code> 即可 </li>
+</ul>
+<p>具体说明可查看下方来源链接</p>
+<p>来源： <a href="https://github.com/MeetWq/nonebot-plugin-memes">nonebot-plugin-memes</a></p>
+<blockquote>
+<h2 id="_35">消息转图片</h2>
+</blockquote>
+<p>将收到的消息合并为图片，支持文字和图片</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.message_merger</code></p>
+<p>使用方法：在群中发送 <code>/merge 文字/图片</code> 即可</p>
+<blockquote>
+<h2 id="_36">网络编译器</h2>
+</blockquote>
+<p>一个网络编译器插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.network_compiler</code></p>
+<p>使用方法：在群中发送 <code>super language\ncode</code>即可</p>
+<blockquote>
+<h2 id="pdf">PDF搜索</h2>
+</blockquote>
+<p>一个可以搜索pdf的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.pdf_searcher</code></p>
+<p>使用方法：在群中发送 <code>pdf 书名</code> 即可</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="_37">舔狗日记</h2>
+</blockquote>
+<p>一个获取舔狗日记的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.pero_dog</code></p>
+<p>使用方法：在群中发送 <code>舔</code> 即可</p>
+<blockquote>
+<h2 id="_38">幻影坦克</h2>
+</blockquote>
+<p>一个幻影坦克生成器</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.phantom_tank</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>幻影 [显示图] [隐藏图]</code> 可获得黑白幻影图</li>
+<li>在群中发送 <code>彩色幻影 [显示图] [隐藏图]</code> 可获得彩色幻影图</li>
+</ul>
+<blockquote>
+<h2 id="_39">毒鸡汤</h2>
+</blockquote>
+<p>一个获取毒鸡汤的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.poisonous_chicken_soup</code></p>
+<p>使用方法：在群中发送 <code>(鸡汤|毒鸡汤|来碗鸡汤)</code> 即可</p>
+<blockquote>
+<h2 id="_40">文字转二维码</h2>
+</blockquote>
+<p>一个生成二维码的插件，仅支持文字</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.qrcode_generator</code></p>
+<p>使用方法：在群中发送 <code>qrcode {content}</code> 即可（文字）</p>
+<blockquote>
+<h2 id="_41">随机人设</h2>
+</blockquote>
+<p>一个随机生成人设插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.random_character</code></p>
+<p>使用方法：在群中发送 <code>随机人设</code> 即可</p>
+<p>来源：<a href="https://github.com/djkcyl/ABot-Graia">A60</a></p>
+<blockquote>
+<h2 id="_42">随机老婆</h2>
+</blockquote>
+<p>一个生成随机老婆图片的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.random_wife</code></p>
+<p>使用方法：在群中发送 <code>(来个老婆|随机老婆)</code> 即可</p>
+<blockquote>
+<h2 id="_43">复读机</h2>
+</blockquote>
+<p>一个复读插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.repeater</code></p>
+<p>使用方法：自动触发</p>
+<blockquote>
+<h2 id="_44">语音合成</h2>
+</blockquote>
+<p>一个语音合成插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.speak</code></p>
+<p>使用方法：在群中发送 <code>说 {content}</code> 即可</p>
+<blockquote>
+<h2 id="steam">steam游戏搜索</h2>
+</blockquote>
+<p>一个可以搜索steam游戏信息的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.steam_game_info_searcher</code></p>
+<p>使用方法：在群中发送 <code>steam {game_name}</code> 即可</p>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="logo">风格logo图片生成</h2>
+</blockquote>
+<p>一个可以生成不同风格logo图片的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.style_picture_generator</code></p>
+<p>使用方法：在群中发送 <code>(5000兆|ph|yt) {文字1} {文字2}</code> 即可</p>
+<p>其中 <code>ph</code> 为 <code>pornhub</code> 风格，<code>yt</code> 为 <code>youtube</code> 风格，<code>5000兆</code> 为 <code>5000兆元</code> 风格</p>
+<blockquote>
+<h2 id="_45">塔罗牌</h2>
+</blockquote>
+<p>一个可以抽塔罗牌的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.tarot</code></p>
+<p>使用方法：在群中发送 <code>塔罗牌</code> 即可</p>
+<p>来源：<a href="https://github.com/MeetWq/mybot/">MeetWq</a></p>
+<blockquote>
+<h2 id="trending">trending</h2>
+</blockquote>
+<p>一个获取热搜的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.trending</code></p>
+<p>使用方法：</p>
+<ul>
+<li>在群中发送 <code>微博热搜</code> 即可查看微博热搜</li>
+<li>在群中发送 <code>知乎热搜</code> 即可查看知乎热搜</li>
+<li>在群中发送 <code>github热搜</code> 即可查看github热搜</li>
+</ul>
+<p>注意：可能需要设置代理</p>
+<blockquote>
+<h2 id="_46">科学计算</h2>
+</blockquote>
+<p>一个接入WolframAlpha的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.wolfram_alpha</code></p>
+<p>使用方法：在群中发送 <code>/solve {content}</code> 即可</p>
+<blockquote>
+<h2 id="_47">发病</h2>
+</blockquote>
+<p>一个快速发病的插件</p>
+<p>模块位置：<code>sagiri_bot.handler.handlers.ill</code></p>
+<p>使用方法：在群中发送 <code>/发病</code> 即可</p>
+<blockquote>
+<p>纱雾，我真的好喜欢你，为了你，我要<strong>*</strong>*</p>
+</blockquote>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../required_module/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 必要插件（建议不删除）" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              必要插件（建议不删除）
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../function_extension/" class="md-footer__link md-footer__link--next" aria-label="下一页: 功能拓展" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              功能拓展
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
