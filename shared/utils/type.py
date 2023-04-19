@@ -16,7 +16,7 @@ def is_float(s: str) -> bool:
 
 
 def parse_bool(message: str, default_value: bool | None = None) -> bool | None:
-    if message.lower() in ("true", "false"):
+    if message.lower() in {"true", "false"}:
         return message.lower() == "true"
     return default_value
 

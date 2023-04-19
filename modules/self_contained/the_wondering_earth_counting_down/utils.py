@@ -28,8 +28,7 @@ def gen_counting_down(
     bottom_texts = bottom_text.split("\n")
     bottom_size = max(BOTTOM_FONT.getsize(t)[0] for t in bottom_texts), len(bottom_texts) * 26
     top_over_width = top_size[0] - start_size[0] - 20
-    if top_over_width < 0:
-        top_over_width = 0
+    top_over_width = max(top_over_width, 0)
     start_over_width = start_size[0] - top_size[0] if start_size[0] >= top_size[0] else 0
     width = max([
         max(top_size[0], start_size[0]) + 20 + counting_size[0] + end_size[0],

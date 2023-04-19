@@ -59,9 +59,7 @@ async def get_steam_game_description(game_id: int) -> str:
         async with session.get(url=url, proxy=proxy) as resp:
             html = await resp.text()
     description = re.findall(r'<div class="game_description_snippet">(.*?)</div>', html, re.S)
-    if len(description) == 0:
-        return "none"
-    return description[0].strip()
+    return "none" if len(description) == 0 else description[0].strip()
 
 
 async def get_steam_game_search(keyword: str) -> MessageChain:

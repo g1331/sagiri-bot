@@ -103,17 +103,27 @@ async def i_have_a_friend(
             draw.ellipse([left, top, right, bottom], fill=fill)
         mask = mask.resize(size, PIL.Image.LANCZOS)
         avatar.putalpha(mask)
-        text = PIL.Image.new("RGBA", (300, 30), "white" if not dark.matched else "black")
+        text = PIL.Image.new("RGBA", (300, 30), "black" if dark.matched else "white")
         text.convert("RGBA")
         text_draw = ImageDraw.Draw(text)
         text_font = ImageFont.truetype(str(FONT_PATH), 30)
-        text_draw.text((0, 0), member.name, fill=(0, 0, 0) if not dark.matched else (141, 141, 146), font=text_font)
-        a = PIL.Image.new("RGBA", (700, 150), "white" if not dark.matched else "black")
+        text_draw.text(
+            (0, 0),
+            member.name,
+            fill=(141, 141, 146) if dark.matched else (0, 0, 0),
+            font=text_font,
+        )
+        a = PIL.Image.new("RGBA", (700, 150), "black" if dark.matched else "white")
         a.convert("RGBA")
         a_draw = ImageDraw.Draw(a)
         a_font = ImageFont.truetype(str(FONT_PATH), 30)
         a.paste(avatar, (30, 25), mask=mask)
-        a_draw.text((150, 85), content, fill=(125, 125, 125) if not dark.matched else (255, 255, 255), font=a_font)
+        a_draw.text(
+            (150, 85),
+            content,
+            fill=(255, 255, 255) if dark.matched else (125, 125, 125),
+            font=a_font,
+        )
         a.paste(text, (150, 38))
         buf = BytesIO()
         a.save(buf, format="PNG")

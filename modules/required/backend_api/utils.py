@@ -154,7 +154,7 @@ def parse_messagechain(message: list) -> MessageChain | list:
                 elements.append(Image(path=path))
             else:
                 exceptions.append((element, "missing parameter: content(bytes) / base64(str) / url(str) / path(str)"))
-    return MessageChain(elements) if not exceptions else exceptions
+    return exceptions if exceptions else MessageChain(elements)
 
 
 def get_last_time(hour: int = 24) -> datetime:

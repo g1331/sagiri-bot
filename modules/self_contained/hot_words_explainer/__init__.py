@@ -67,10 +67,14 @@ async def get_result(keyword: str) -> MessageChain:
             result = definition[0]
             get = True
             break
-    if not get:
-        return MessageChain(f"未找到关于{keyword}的结果！")
-    return MessageChain([
-        f"{result['term']['title']}\n\n",
-        f"标签：{'、'.join(tag['name'] for tag in result['tags'])}\n\n",
-        f"释义：{result['content']}",
-    ])
+    return (
+        MessageChain(
+            [
+                f"{result['term']['title']}\n\n",
+                f"标签：{'、'.join(tag['name'] for tag in result['tags'])}\n\n",
+                f"释义：{result['content']}",
+            ]
+        )
+        if get
+        else MessageChain(f"未找到关于{keyword}的结果！")
+    )

@@ -164,16 +164,15 @@ class InterpolationBlock(torch.nn.Module):
         self.align_corners = align_corners
 
     def forward(self, x):
-        outputs = F.interpolate(
+        return F.interpolate(
             x,
-            size=x.shape[-1] * self.scale_factor
-            if not self.downsample
-            else x.shape[-1] // self.scale_factor,
+            size=x.shape[-1] // self.scale_factor
+            if self.downsample
+            else x.shape[-1] * self.scale_factor,
             mode=self.mode,
             align_corners=self.align_corners,
             recompute_scale_factor=False,
         )
-        return outputs
 
 
 class Generator(torch.nn.Module):
@@ -192,8 +191,12 @@ class Generator(torch.nn.Module):
         # #             self.ups.append(weight_norm(
         # #                 ConvTranspose1d(h.upsample_initial_channel//(2**i), h.upsample_initial_channel//(2**(i+1)),
         # #                                 k, u, padding=(k-u)//2)))
-        if h.sampling_rate == 24000:
-            for i, (u, k) in enumerate(zip(h.upsample_rates, h.upsample_kernel_sizes)):
+        for i, (u, k) in enumerate(zip(h.upsample_rates, h.upsample_kernel_sizes)):
+                #         for i, (u, k) in enumerate(zip(h.upsample_rates, h.upsample_kernel_sizes)):
+                # #             self.ups.append(weight_norm(
+                # #                 ConvTranspose1d(h.upsample_initial_channel//(2**i), h.upsample_initial_channel//(2**(i+1)),
+                # #                                 k, u, padding=(k-u)//2)))
+            if h.sampling_rate == 24000:
                 self.ups.append(
                     torch.nn.Sequential(
                         InterpolationBlock(u),
@@ -207,8 +210,7 @@ class Generator(torch.nn.Module):
                         ),
                     )
                 )
-        else:
-            for i, (u, k) in enumerate(zip(h.upsample_rates, h.upsample_kernel_sizes)):
+            else:
                 self.ups.append(
                     weight_norm(
                         ConvTranspose1d(
@@ -225,9 +227,7 @@ class Generator(torch.nn.Module):
         ch = 0
         for i in range(len(self.ups)):
             ch = h.upsample_initial_channel // (2 ** (i + 1))
-            for j, (k, d) in enumerate(
-                zip(h.resblock_kernel_sizes, h.resblock_dilation_sizes)
-            ):
+            for k, d in zip(h.resblock_kernel_sizes, h.resblock_dilation_sizes):
                 self.resblocks.append(resblock(h, ch, k, d))
 
         self.conv_post = weight_norm(Conv1d(ch, 1, 7, 1, padding=3))
@@ -352,7 +352,7 @@ class MultiPeriodDiscriminator(torch.nn.Module):
         y_d_gs = []
         fmap_rs = []
         fmap_gs = []
-        for i, d in enumerate(self.discriminators):
+        for d in self.discriminators:
             y_d_r, fmap_r = d(y)
             y_d_g, fmap_g = d(y_hat)
             y_d_rs.append(y_d_r)

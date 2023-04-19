@@ -19,8 +19,10 @@ async def get_weibo_trending() -> MessageChain:
             data = await resp.json()
     data = data["data"]
     text_list = [f"随机数:{random.randint(0, 10000)}", "\n微博实时热榜:"]
-    for index, i in enumerate(data, start=1):
-        text_list.append(f"\n{index}. {i['word'].strip()}")
+    text_list.extend(
+        f"\n{index}. {i['word'].strip()}"
+        for index, i in enumerate(data, start=1)
+    )
     text = "".join(text_list).replace("#", "")
     return MessageChain(text)
 
@@ -32,8 +34,10 @@ async def get_zhihu_trending() -> MessageChain:
             data = await resp.json()
     data = data["data"]
     text_list = [f"随机数:{random.randint(0, 10000)}", "\n知乎实时热榜:"]
-    for index, i in enumerate(data, start=1):
-        text_list.append(f"\n{index}. {i['target']['title'].strip()}")
+    text_list.extend(
+        f"\n{index}. {i['target']['title'].strip()}"
+        for index, i in enumerate(data, start=1)
+    )
     text = "".join(text_list).replace("#", "")
     print(text)
     return MessageChain(text)

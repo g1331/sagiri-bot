@@ -20,6 +20,8 @@ async def target_valid(target: int, group: Group | int) -> bool:
         group = group.id
     if group not in public_group.data:
         raise ValueError(f"group {group} not found!")
-    if await Ariadne.current(list(public_group.data[group].keys())[0]).get_member(group, target):
-        return True
-    return False
+    return bool(
+        await Ariadne.current(
+            list(public_group.data[group].keys())[0]
+        ).get_member(group, target)
+    )

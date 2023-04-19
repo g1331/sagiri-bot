@@ -20,8 +20,7 @@ class HighwayNetwork(nn.Module):
         x1 = self.W1(x)
         x2 = self.W2(x)
         g = torch.sigmoid(x2)
-        y = g * F.relu(x1) + (1.0 - g) * x
-        return y
+        return g * F.relu(x1) + (1.0 - g) * x
 
 
 class Encoder(nn.Module):
@@ -64,11 +63,7 @@ class Encoder(nn.Module):
         batch_size = x.size()[0]
         num_chars = x.size()[1]
 
-        if speaker_embedding.dim() == 1:
-            idx = 0
-        else:
-            idx = 1
-
+        idx = 0 if speaker_embedding.dim() == 1 else 1
         # Start by making a copy of each speaker embedding to match the input text length
         # The output of this has size (batch_size, num_chars * speaker_embedding_size)
         speaker_embedding_size = speaker_embedding.size()[idx]
@@ -105,7 +100,7 @@ class CBHG(nn.Module):
         # List of all rnns to call `flatten_parameters()` on
         self._to_flatten = []
 
-        self.bank_kernels = [i for i in range(1, K + 1)]
+        self.bank_kernels = list(range(1, K + 1))
         self.conv1d_bank = nn.ModuleList()
         for k in self.bank_kernels:
             conv = BatchNormConv(in_channels, channels, k)
@@ -128,7 +123,7 @@ class CBHG(nn.Module):
             self.highway_mismatch = False
 
         self.highways = nn.ModuleList()
-        for i in range(num_highways):
+        for _ in range(num_highways):
             hn = HighwayNetwork(channels)
             self.highways.append(hn)
 
@@ -631,10 +626,12 @@ class Tacotron(nn.Module):
         self.zero_grad()
         for name, child in self.named_children():
             if name in whitelist_layers:
-                logger.debug("Trainable Layer: %s" % name)
+                logger.debug(f"Trainable Layer: {name}")
                 logger.debug(
-                    "Trainable Parameters: %.3f"
-                    % sum([np.prod(p.size()) for p in child.parameters()])
+                    (
+                        "Trainable Parameters: %.3f"
+                        % sum(np.prod(p.size()) for p in child.parameters())
+                    )
                 )
                 for param in child.parameters():
                     param.requires_grad = False
@@ -673,6 +670,6 @@ class Tacotron(nn.Module):
 
     def num_params(self):
         parameters = filter(lambda p: p.requires_grad, self.parameters())
-        parameters = sum([np.prod(p.size()) for p in parameters]) / 1_000_000
+        parameters = sum(np.prod(p.size()) for p in parameters) / 1_000_000
         logger.debug("Trainable Parameters: %.3fM" % parameters)
         return parameters

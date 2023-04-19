@@ -30,7 +30,7 @@ class WaveRNNVocoder:
         else:
             self._device = torch.device("cpu")
 
-        logger.debug("Loading model weights at %s" % model_path)
+        logger.debug(f"Loading model weights at {model_path}")
         checkpoint = torch.load(model_path, self._device)
         self._model.load_state_dict(checkpoint["model_state"])
         self._model.eval()

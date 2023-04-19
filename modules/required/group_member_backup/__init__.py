@@ -54,23 +54,22 @@ async def group_member_backup(app: Ariadne, group: Group, source: Source, show: 
     if show.matched:
         if not show_group.matched:
             return await app.send_message(group, "请使用 -g=qq群号 来给出要查询的群号！", quote=source)
-        if show_group := parse_match_type(show_group, int, 0):
-            if res := await orm.fetchone(
-                select(
-                    GroupMembersBackup.group_id,
-                    GroupMembersBackup.group_name,
-                    GroupMembersBackup.members
-                ).where(
-                    GroupMembersBackup.group_id == show_group
-                )
-            ):
-                return await app.send_message(
-                    group, f"查询到群组 <{res[1]}>({res[0]}) 有以下群成员：{res[2].replace(',', ', ').replace('|', ' | ')}"
-                )
-            else:
-                return await app.send_message(group, f"未找到群 <{show_group}> 的数据！")
-        else:
+        if not (show_group := parse_match_type(show_group, int, 0)):
             return await app.send_message(group, f"群号<{show_group}>格式错误！", quote=source)
+        if res := await orm.fetchone(
+            select(
+                GroupMembersBackup.group_id,
+                GroupMembersBackup.group_name,
+                GroupMembersBackup.members
+            ).where(
+                GroupMembersBackup.group_id == show_group
+            )
+        ):
+            return await app.send_message(
+                group, f"查询到群组 <{res[1]}>({res[0]}) 有以下群成员：{res[2].replace(',', ', ').replace('|', ' | ')}"
+            )
+        else:
+            return await app.send_message(group, f"未找到群 <{show_group}> 的数据！")
     members = await app.get_member_list(group)
     _ = await orm.insert_or_update(
         GroupMembersBackup,

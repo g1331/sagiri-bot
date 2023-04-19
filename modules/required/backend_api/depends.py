@@ -15,7 +15,7 @@ def generate_token(username: str, expire: int = 86400):
     ts_str = str(time.time() + expire)
     ts_byte = ts_str.encode("utf-8")
     sha1_tshex_str = hmac.new(username.encode("utf-8"), ts_byte, "sha1").hexdigest()
-    token = ts_str + ":" + sha1_tshex_str
+    token = f"{ts_str}:{sha1_tshex_str}"
     b64_token = base64.urlsafe_b64encode(token.encode("utf-8"))
     return b64_token.decode("utf-8")
 

@@ -61,10 +61,9 @@ class GlobalFrequencyLimitDict:
                     member_id
                 ] = datetime.datetime.now() + relativedelta(hours=1)
         else:
-            self.__temp_blacklist[group_id] = {}
-            self.__temp_blacklist[group_id][
-                member_id
-            ] = datetime.datetime.now() + relativedelta(hours=1)
+            self.__temp_blacklist[group_id] = {
+                member_id: datetime.datetime.now() + relativedelta(hours=1)
+            }
 
     def blacklist_judge(self, group_id: int, member_id: int) -> bool:
         if (

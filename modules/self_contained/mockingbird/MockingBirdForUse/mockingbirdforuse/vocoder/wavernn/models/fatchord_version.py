@@ -36,7 +36,7 @@ class MelResNet(nn.Module):
         self.conv_in = nn.Conv1d(in_dims, compute_dims, kernel_size=k_size, bias=False)
         self.batch_norm = nn.BatchNorm1d(compute_dims)
         self.layers = nn.ModuleList()
-        for i in range(res_blocks):
+        for _ in range(res_blocks):
             self.layers.append(ResBlock(compute_dims))
         self.conv_out = nn.Conv1d(compute_dims, res_out_dims, kernel_size=1)
 
@@ -182,10 +182,7 @@ class WaveRNN(nn.Module):
         rnn2 = self.get_gru_cell(self.rnn2)
 
         with torch.no_grad():
-            if torch.cuda.is_available():
-                mels = mels.cuda()
-            else:
-                mels = mels.cpu()
+            mels = mels.cuda() if torch.cuda.is_available() else mels.cpu()
             wave_len = (mels.size(-1) - 1) * self.hop_length
             mels = self.pad_tensor(mels.transpose(1, 2), pad=self.pad, side="both")
             mels, aux = self.upsample(mels.transpose(1, 2))
@@ -292,7 +289,7 @@ class WaveRNN(nn.Module):
             padded = torch.zeros(b, total, c).cuda()
         else:
             padded = torch.zeros(b, total, c).cpu()
-        if side == "before" or side == "both":
+        if side in ["before", "both"]:
             padded[:, pad : pad + t, :] = x
         elif side == "after":
             padded[:, :t, :] = x
@@ -441,5 +438,5 @@ class WaveRNN(nn.Module):
 
     def num_params(self):
         parameters = filter(lambda p: p.requires_grad, self.parameters())
-        parameters = sum([np.prod(p.size()) for p in parameters]) / 1_000_000
+        parameters = sum(np.prod(p.size()) for p in parameters) / 1_000_000
         logger.debug("Trainable Parameters: %.3fM" % parameters)

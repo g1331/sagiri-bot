@@ -104,10 +104,9 @@ async def download_book(book: Book, path: str | Path | None = None) -> tuple[str
         # print(suffix, size)
         async with session.get(download_url, headers=headers, proxy=proxy) as resp:
             content = await resp.read()
-    if path:
-        if path.is_dir():
-            (path / f"{book.name}.{suffix.lower()}").write_bytes(content)
-        elif path.is_file():
-            path.write_bytes(content)
-    else:
+    if not path:
         return suffix.lower(), content
+    if path.is_dir():
+        (path / f"{book.name}.{suffix.lower()}").write_bytes(content)
+    elif path.is_file():
+        path.write_bytes(content)

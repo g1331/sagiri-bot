@@ -87,9 +87,8 @@ class PublicGroup(object):
             if admins := self.get_admin_bots(group):
                 if account not in admins:
                     return True
-                else:
-                    admins.sort()
-                    return (source.id + int(time.mktime(source.time.timetuple()))) % len(admins) != admins.index(account)
+                admins.sort()
+                return (source.id + int(time.mktime(source.time.timetuple()))) % len(admins) != admins.index(account)
         if source:
             return (source.id + int(time.mktime(source.time.timetuple()))) % len(self.data[group_id]) != self.get_index(group, account)
         else:

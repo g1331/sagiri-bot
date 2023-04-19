@@ -4,7 +4,7 @@ import re
 
 # Mappings from symbol to numeric ID and vice versa:
 _symbol_to_id = {s: i for i, s in enumerate(symbols)}
-_id_to_symbol = {i: s for i, s in enumerate(symbols)}
+_id_to_symbol = dict(enumerate(symbols))
 
 # Regular expression matching text enclosed in curly braces:
 _curly_re = re.compile(r"(.*?)\{(.+?)\}(.*)")
@@ -55,10 +55,10 @@ def sequence_to_text(sequence):
 
 def _clean_text(text, cleaner_names):
     for name in cleaner_names:
-        cleaner = getattr(cleaners, name)
-        if not cleaner:
-            raise Exception("Unknown cleaner: %s" % name)
-        text = cleaner(text)
+        if cleaner := getattr(cleaners, name):
+            text = cleaner(text)
+        else:
+            raise Exception(f"Unknown cleaner: {name}")
     return text
 
 
@@ -67,7 +67,7 @@ def _symbols_to_sequence(symbols):
 
 
 def _arpabet_to_sequence(text):
-    return _symbols_to_sequence(["@" + s for s in text.split()])
+    return _symbols_to_sequence([f"@{s}" for s in text.split()])
 
 
 def _should_keep_symbol(s):

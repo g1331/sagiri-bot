@@ -85,14 +85,14 @@ def denoise(wav, noise_profile: NoiseProfile, eta=0.15):
     wav, dtype = to_float(wav)
     wav += np.finfo(np.float64).eps
     p = noise_profile
-    
+
     nframes = int(math.floor(len(wav) / p.len2) - math.floor(p.window_size / p.len2))
     x_final = np.zeros(nframes * p.len2)
 
     aa = 0.98
     mu = 0.98
     ksi_min = 10 ** (-25 / 10)
-    
+
     x_old = np.zeros(p.len1)
     xk_prev = np.zeros(p.len1)
     noise_mu2 = p.noise_mu2
@@ -125,7 +125,7 @@ def denoise(wav, noise_profile: NoiseProfile, eta=0.15):
         xi_w = np.fft.ifft(hw * spec, p.n_fft, axis=0)
         xi_w = np.real(xi_w)
 
-        x_final[k:k + p.len2] = x_old + xi_w[0:p.len1]
+        x_final[k:k + p.len2] = x_old + xi_w[:p.len1]
         x_old = xi_w[p.len1:p.window_size]
 
     output = from_float(x_final, dtype)

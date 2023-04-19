@@ -27,16 +27,17 @@ class ConversationManager(object):
         if isinstance(member, Member):
             member = member.id
         preset = preset_dict[preset]["content"] \
-            if preset in preset_dict else \
-            (preset if preset else preset_dict["sagiri"]["content"])
+                if preset in preset_dict else \
+                (preset if preset else preset_dict["sagiri"]["content"])
         if group in self.data:
             if member in self.data[group]:
                 _ = self.data[group][member]["gpt"].reset(preset=preset)
             else:
                 self.data[group][member] = {"running": False, "gpt": GPT35(openai_key, preset, proxy)}
         else:
-            self.data[group] = {}
-            self.data[group][member] = {"running": False, "gpt": GPT35(openai_key, preset, proxy)}
+            self.data[group] = {
+                member: {"running": False, "gpt": GPT35(openai_key, preset, proxy)}
+            }
 
     async def send_message(self, group: Group | int, member: Member | int, content: str) -> str:
         if isinstance(group, Group):

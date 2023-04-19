@@ -40,14 +40,13 @@ class GroupBlackList(object):
             member = member.id
         if isinstance(group, Group):
             group = group.id
-        if not is_global:
-            if member in self.data:
-                self.data[member].add(group)
-            else:
-                self.data[member] = {group, }
-        else:
+        if is_global:
             group = -1
             self.global_data.add(member)
+        elif member in self.data:
+            self.data[member].add(group)
+        else:
+            self.data[member] = {group, }
         await orm.insert_or_update(
             BlackList,
             [BlackList.member_id == member, BlackList.group_id == group],
@@ -59,12 +58,11 @@ class GroupBlackList(object):
             member = member.id
         if isinstance(group, Group):
             group = group.id
-        if not is_global:
-            if member in self.data:
-                self.data[member].discard(group)
-        else:
+        if is_global:
             group = -1
             self.global_data.discard(member)
+        elif member in self.data:
+            self.data[member].discard(group)
         await orm.delete(BlackList, [BlackList.member_id == member, BlackList.group_id == group])
 
     async def clear(self, member: Member | int) -> NoReturn:

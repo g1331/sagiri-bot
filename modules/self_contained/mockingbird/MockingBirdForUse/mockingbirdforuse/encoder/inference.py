@@ -30,8 +30,7 @@ class Encoder:
         """
 
         frames = torch.from_numpy(frames_batch).to(self._device)
-        embed = self._model.forward(frames).detach().cpu().numpy()
-        return embed
+        return self._model.forward(frames).detach().cpu().numpy()
 
     def compute_partial_slices(
         self,
@@ -68,17 +67,16 @@ class Encoder:
         assert 0 <= overlap < 1
         assert 0 < min_pad_coverage <= 1
 
-        if rate != None:
-            samples_per_frame = int((hp.sampling_rate * hp.mel_window_step / 1000))
-            n_frames = int(np.ceil((n_samples + 1) / samples_per_frame))
-            frame_step = int(np.round((hp.sampling_rate / rate) / samples_per_frame))
-        else:
-            samples_per_frame = int((hp.sampling_rate * hp.mel_window_step / 1000))
+        samples_per_frame = int((hp.sampling_rate * hp.mel_window_step / 1000))
+        if rate is None:
             n_frames = int(np.ceil((n_samples + 1) / samples_per_frame))
             frame_step = max(
                 int(np.round(partial_utterance_n_frames * (1 - overlap))), 1
             )
 
+        else:
+            n_frames = int(np.ceil((n_samples + 1) / samples_per_frame))
+            frame_step = int(np.round((hp.sampling_rate / rate) / samples_per_frame))
         assert 0 < frame_step, "The rate is too high"
         assert (
             frame_step <= hp.partials_n_frames
@@ -130,10 +128,7 @@ class Encoder:
         if not using_partials:
             frames = audio.wav_to_mel_spectrogram(wav)
             embed = self.embed_frames_batch(frames[None, ...])[0]
-            if return_partials:
-                return embed, None, None
-            return embed
-
+            return (embed, None, None) if return_partials else embed
         # Compute where to split the utterance into partials and pad if necessary
         wave_slices, mel_slices = self.compute_partial_slices(len(wav), **kwargs)
         max_wave_length = wave_slices[-1].stop
@@ -149,6 +144,4 @@ class Encoder:
         raw_embed = np.mean(partial_embeds, axis=0)
         embed = raw_embed / np.linalg.norm(raw_embed, 2)
 
-        if return_partials:
-            return embed, partial_embeds, wave_slices
-        return embed
+        return (embed, partial_embeds, wave_slices) if return_partials else embed

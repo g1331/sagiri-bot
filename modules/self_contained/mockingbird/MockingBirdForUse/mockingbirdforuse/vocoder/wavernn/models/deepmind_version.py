@@ -101,8 +101,7 @@ class WaveRNN(nn.Module):
             start = time.time()
 
             # Loop for generation
-            for i in range(seq_len):
-
+            for _ in range(seq_len):
                 # Split into two hidden states
                 hidden_coarse, hidden_fine = torch.split(hidden, self.split_size, dim=1)
 
@@ -176,5 +175,5 @@ class WaveRNN(nn.Module):
 
     def num_params(self):
         parameters = filter(lambda p: p.requires_grad, self.parameters())
-        parameters = sum([np.prod(p.size()) for p in parameters]) / 1_000_000
+        parameters = sum(np.prod(p.size()) for p in parameters) / 1_000_000
         logger.debug("Trainable Parameters: %.3f million" % parameters)

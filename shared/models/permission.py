@@ -38,9 +38,8 @@ class GroupPermission(object):
             group = group.id
         if group in self.data and member in self.data[group]:
             return self.data[group][member]
-        else:
-            await self.update(group, member, 1)
-            return 1
+        await self.update(group, member, 1)
+        return 1
 
     async def update(self, group: Group | int, member: Member | int, level: int, is_global: bool = False):
         if isinstance(member, Member):

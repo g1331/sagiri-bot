@@ -12,7 +12,7 @@ class HifiGanVocoder:
         self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.generator = Generator(hp).to(self._device)
 
-        logger.debug("Loading '{}'".format(model_path))
+        logger.debug(f"Loading '{model_path}'")
         state_dict_g = torch.load(model_path, map_location=self._device)
         logger.debug("Complete.")
 

@@ -183,11 +183,6 @@ async def delete_keyword(
     op_type: RegexResult,
     keyword: RegexResult,
 ):
-    op_type = (
-        ("regex" if op_type.result.display == "正则" else "fuzzy")
-        if op_type.matched
-        else "fullmatch"
-    )
     keyword = keyword.result.copy()
     for i in keyword.content:
         if isinstance(i, MultimediaElement):
@@ -198,7 +193,7 @@ async def delete_keyword(
             KeywordReply.reply_type, KeywordReply.reply, KeywordReply.reply_md5
         ).where(KeywordReply.keyword == keyword)
     ):
-        replies = list()
+        replies = []
         for result in results:
             content_type = result[0]
             content = result[1]
@@ -207,13 +202,15 @@ async def delete_keyword(
 
         msg = [Plain(text=f"关键词{keyword}目前有以下数据：\n")]
         for i in range(len(replies)):
-            msg.append(Plain(f"{i + 1}. "))
-            msg.append(
-                ("正则" if replies[i][0] == "regex" else "模糊")
-                if replies[i][0] != "fullmatch"
-                else "全匹配"
+            msg.extend(
+                (
+                    Plain(f"{i + 1}. "),
+                    ("正则" if replies[i][0] == "regex" else "模糊")
+                    if replies[i][0] != "fullmatch"
+                    else "全匹配",
+                    "匹配\n",
+                )
             )
-            msg.append("匹配\n")
             msg.extend(json_to_message_chain(replies[i][1]).__root__)
             msg.append(Plain("\n"))
         msg.append(Plain(text="请发送你要删除的回复编号"))
@@ -247,16 +244,24 @@ async def delete_keyword(
             )
             temp_list = []
             global regex_list
-            for i in regex_list:
-                if all([
-                    i[0] == keyword
-                    if op_type == "regex"
-                    else f"(.*){keyword.replace('[', parse_mid_bracket).replace('{', parse_big_bracket).replace('(', parse_bracket)}(.*)",
-                    i[1] == replies[number - 1][2],
-                    i[2] == (-1 if group_only.matched else group.id),
-                ]):
-                    continue
-                temp_list.append(i)
+            op_type = (
+                ("regex" if op_type.result.display == "正则" else "fuzzy")
+                if op_type.matched
+                else "fullmatch"
+            )
+            temp_list.extend(
+                i
+                for i in regex_list
+                if not all(
+                    [
+                        i[0] == keyword
+                        if op_type == "regex"
+                        else f"(.*){keyword.replace('[', parse_mid_bracket).replace('{', parse_big_bracket).replace('(', parse_bracket)}(.*)",
+                        i[1] == replies[number - 1][2],
+                        i[2] == (-1 if group_only.matched else group.id),
+                    ]
+                )
+            )
             regex_list = temp_list
             await app.send_group_message(group, MessageChain("删除成功"), quote=source)
         else:
@@ -300,29 +305,27 @@ async def keyword_detect(app: Ariadne, message: MessageChain, group: Group):
                 await app.send_group_message(
                     group, json_to_message_chain(str(reply[0]))
                 )
-            else:
-                response_md5 = [
-                    i[1]
-                    for i in regex_list
-                    if (
-                        re.match(i[0], copied_msg.as_persistent_string())
-                        and i[2] in (-1, group.id)
-                    )
-                ]
-                if response_md5:
-                    await app.send_group_message(
-                        group,
-                        json_to_message_chain(
-                            (
-                                await orm.fetchone(
-                                    select(KeywordReply.reply).where(
-                                        KeywordReply.reply_md5
-                                        == random.choice(response_md5)
-                                    )
+            elif response_md5 := [
+                i[1]
+                for i in regex_list
+                if (
+                    re.match(i[0], copied_msg.as_persistent_string())
+                    and i[2] in (-1, group.id)
+                )
+            ]:
+                await app.send_group_message(
+                    group,
+                    json_to_message_chain(
+                        (
+                            await orm.fetchone(
+                                select(KeywordReply.reply).where(
+                                    KeywordReply.reply_md5
+                                    == random.choice(response_md5)
                                 )
-                            )[0]
-                        ),
-                    )
+                            )
+                        )[0]
+                    ),
+                )
 
 
 @channel.use(ListenerSchema(listening_events=[ApplicationLaunched]))
@@ -374,10 +377,10 @@ async def show_keywords(app: Ariadne, group: Group):
     message = ["全局启用："]
     for ks in (global_keywords, local_keywords):
         for reply_type in reply_type_set:
-            t = set()
-            for keyword in filter(lambda x: x[1] == reply_type, ks):
-                t.add(f"    {keyword[0]}")
-            if t:
+            if t := {
+                f"    {keyword[0]}"
+                for keyword in filter(lambda x: x[1] == reply_type, ks)
+            }:
                 message.append(f"  {reply_type}:")
                 message.extend(t)
         if local_keywords:

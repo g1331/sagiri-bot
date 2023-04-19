@@ -95,7 +95,7 @@ class WordleWaiter(Waiter.create([GroupMessage])):
                 ),
             )
             return True
-        
+
         # 防止出现问题
         if self.wordle.finish:
             return False
@@ -103,7 +103,9 @@ class WordleWaiter(Waiter.create([GroupMessage])):
         word = word.upper()
         # 应该是聊其他的，直接 return
         legal_chars = "'-./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        if len(word) != self.wordle.length or not all(c in legal_chars for c in word):
+        if len(word) != self.wordle.length or any(
+            c not in legal_chars for c in word
+        ):
             return
 
         async with self.member_list_mutex:

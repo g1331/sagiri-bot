@@ -135,30 +135,24 @@ async def blacklist(
     success_targets = []
     group_blacklist = create(GroupBlackList)
     targets = get_targets(targets.result)
-    if add.matched:
-        if is_global.matched:
-            for target in targets:
+    for target in targets:
+        if add.matched:
+            if is_global.matched:
                 _ = await group_blacklist.add(target, -1, True)
-        else:
-            for target in targets:
-                if await target_valid(target, group):
-                    _ = await group_blacklist.add(target, group)
-                    success_targets.append(target)
-                else:
-                    error_targets.append((target, "目标不存在于群组中"))
-    elif remove.matched:
-        if is_global.matched:
-            for target in targets:
+            elif await target_valid(target, group):
+                _ = await group_blacklist.add(target, group)
+                success_targets.append(target)
+            else:
+                error_targets.append((target, "目标不存在于群组中"))
+        elif remove.matched:
+            if is_global.matched:
                 _ = await group_blacklist.remove(target, -1, True)
-        else:
-            for target in targets:
-                if await target_valid(target, group):
-                    _ = await group_blacklist.remove(target, group)
-                    success_targets.append(target)
-                else:
-                    error_targets.append((target, "目标不存在于群组中"))
-    elif clear.matched:
-        for target in targets:
+            elif await target_valid(target, group):
+                _ = await group_blacklist.remove(target, group)
+                success_targets.append(target)
+            else:
+                error_targets.append((target, "目标不存在于群组中"))
+        elif clear.matched:
             _ = await group_blacklist.clear(target)
             success_targets.append(target)
     response_text = f"共解析{len(targets)}个目标，\n其中{len(success_targets)}个执行成功，{len(error_targets)}个失败"

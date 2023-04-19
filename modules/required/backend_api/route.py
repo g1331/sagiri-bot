@@ -34,7 +34,7 @@ async def get_saya_source(module: str, token_valid: bool = Depends(certify_token
     if not token_valid:
         return GeneralResponse(code=401, message="invalid token!")
     path = module.replace(".", "/")
-    if (p := Path.cwd() / (path + ".py")).exists():
+    if (p := Path.cwd() / f"{path}.py").exists():
         content = await read_file(p)
     elif (p := Path.cwd() / path).exists():
         content = await read_file(p / "__init__.py")
@@ -48,8 +48,7 @@ async def installed_channels(token_valid: bool = Depends(certify_token)):
     if not token_valid:
         return GeneralResponse(code=401, message="invalid token!")
     channels = saya.channels
-    modules = list(channels.keys())
-    modules.sort()
+    modules = sorted(channels.keys())
     return GeneralResponse(
         data={
             module: {**channels[module].meta, "metadata": load_plugin_meta_by_module(module)}
@@ -69,23 +68,29 @@ async def not_installed_channels(token_valid: bool = Depends(certify_token)):
 
 @route.get("/saya/install")
 async def get_install_channel(channel: str, token_valid: bool = Depends(certify_token)):
-    if not token_valid:
-        return GeneralResponse(code=401, message="invalid token!")
-    return install_channel(channel)
+    return (
+        install_channel(channel)
+        if token_valid
+        else GeneralResponse(code=401, message="invalid token!")
+    )
 
 
 @route.get("/saya/uninstall")
 async def get_uninstall_channel(channel: str, token_valid: bool = Depends(certify_token)):
-    if not token_valid:
-        return GeneralResponse(code=401, message="invalid token!")
-    return uninstall_channel(channel)
+    return (
+        uninstall_channel(channel)
+        if token_valid
+        else GeneralResponse(code=401, message="invalid token!")
+    )
 
 
 @route.get("/saya/reload")
 async def get_reload_channel(channel: str, token_valid: bool = Depends(certify_token)):
-    if not token_valid:
-        return GeneralResponse(code=401, message="invalid token!")
-    return reload_channel(channel)
+    return (
+        reload_channel(channel)
+        if token_valid
+        else GeneralResponse(code=401, message="invalid token!")
+    )
 
 
 @route.get("/saya/modify_switch")
@@ -183,16 +188,21 @@ async def send_group_message(
 
 @route.get("/friend/list")
 async def get_friend_list(token_valid: bool = Depends(certify_token)):
-    if not token_valid:
-        return GeneralResponse(code=401, message="invalid token!")
-    return GeneralResponse(
-        data={
-            account: {
-                friend.id: {**friend.dict()}
-                for friend in await Ariadne.current(account).get_friend_list()
-            } for account in create(GlobalConfig).bot_accounts
-            if Ariadne.current(account).connection.status.available
-        }
+    return (
+        GeneralResponse(
+            data={
+                account: {
+                    friend.id: {**friend.dict()}
+                    for friend in await Ariadne.current(
+                        account
+                    ).get_friend_list()
+                }
+                for account in create(GlobalConfig).bot_accounts
+                if Ariadne.current(account).connection.status.available
+            }
+        )
+        if token_valid
+        else GeneralResponse(code=401, message="invalid token!")
     )
 
 
@@ -266,17 +276,19 @@ async def get_sys_info(token_valid: bool = Depends(certify_token)):
 
 @route.get("/home")
 async def get_home_info(token_valid: bool = Depends(certify_token)):
-    if not token_valid:
-        return GeneralResponse(code=401, message="invalid token!")
-    return GeneralResponse(
-        data={
-            "group_count": len(create(PublicGroup).data),
-            "sent_count": create(Sagiri).sent_count,
-            "received_count": create(Sagiri).received_count,
-            "saya_count": len(create(Saya).channels),
-            "talk_count": await get_talk_count_by_hour(),
-            "account_count": len(await Ariadne.current().get_bot_list())
-        }
+    return (
+        GeneralResponse(
+            data={
+                "group_count": len(create(PublicGroup).data),
+                "sent_count": create(Sagiri).sent_count,
+                "received_count": create(Sagiri).received_count,
+                "saya_count": len(create(Saya).channels),
+                "talk_count": await get_talk_count_by_hour(),
+                "account_count": len(await Ariadne.current().get_bot_list()),
+            }
+        )
+        if token_valid
+        else GeneralResponse(code=401, message="invalid token!")
     )
 
 
@@ -285,8 +297,7 @@ async def get_saya_info(token_valid: bool = Depends(certify_token)):
     if not token_valid:
         return GeneralResponse(code=401, message="invalid token!")
     channels = saya.channels
-    modules = list(channels.keys())
-    modules.sort()
+    modules = sorted(channels.keys())
     saya_data = create(SayaData)
     public_group = create(PublicGroup)
     modules_info = []
